@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ASSA · Estrategia Mundial 2026 — XIY</title>
+<meta name="description" content="ASSA × XIY · Estrategia Mundial 2026">
+<meta property="og:title" content="ASSA × XIY · Estrategia Mundial 2026">
+<meta property="og:description" content="La estrategia de ASSA para el Mundial 2026">
+<meta property="og:type" content="website">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Mono:wght@400;500&family=Quicksand:wght@400;500;600&display=swap');
+
+:root{
+  --bg:#2f3846;
+  --bg2:#384353;
+  --bg3:#3d4858;
+  --bg4:#4d586a;
+  --brd:rgba(255,255,255,0.08);
+  --brd2:rgba(255,255,255,0.14);
+  --txt:#ffffff;
+  --txt2:#c8ccd5;
+  --txt3:#8a93a4;
+  --acc:#ff2703;
+  --acc-soft:#ffb4a7;
+  --cream:#fffacc;
+  --lav:#d4d6dd;
+  --blue:#8ab9ff;
+  --grn:#b8e4a3;
+  --amb:#ffb4a7;
+  --red:#ff2703;
+  --pur:#c8b4ff;
+  --cr:14px;
+  /* Mundial gold accent */
+  --gold:#f5c842;
+  --gold-soft:rgba(245,200,66,0.15);
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{height:100%;overflow:hidden;}
+body{
+  background:var(--bg);color:var(--txt);
+  font-family:'DM Sans',sans-serif;font-size:15px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ─── HEADER ─────────────────────────────────── */
+.hdr{
+  position:fixed;top:0;left:0;right:0;height:54px;
+  background:rgba(47,56,70,0.92);backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--brd);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 32px;z-index:100;
+}
+.hdr-l{display:flex;align-items:center;gap:16px;}
+.hdr-x{font-family:'DM Mono',monospace;font-size:14px;color:var(--txt3);font-weight:400;}
+.la{font-size:14px;font-weight:600;letter-spacing:1.5px;color:var(--txt);}
+.sep{width:1px;height:18px;background:var(--brd2);}
+.hdr-meta{font-size:11px;color:var(--txt3);letter-spacing:0.04em;font-family:'DM Mono',monospace;}
+.hdr-r{display:flex;align-items:center;gap:14px;font-size:12px;color:var(--txt3);}
+.hdr-r .tagline{font-family:'Quicksand',sans-serif;color:var(--gold);font-weight:600;letter-spacing:0.02em;}
+
+/* ─── DECK ───────────────────────────────────── */
+.deck{position:fixed;top:54px;left:0;right:0;bottom:60px;overflow:hidden;}
+.slide{position:absolute;inset:0;padding:48px 72px 32px;overflow-y:auto;display:none;}
+.slide.on{display:block;animation:slidein .45s cubic-bezier(.2,.8,.25,1);}
+@keyframes slidein{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:none;}}
+.slide-inner{max-width:1280px;margin:0 auto;}
+.slide.on .slide-label,.slide.on h1,.slide.on h2,.slide.on .lead,.slide.on .stagger>*{
+  animation:fadeup .55s cubic-bezier(.2,.8,.25,1) backwards;
+}
+.slide.on h1,.slide.on h2{animation-delay:.05s;}
+.slide.on .lead{animation-delay:.13s;}
+.slide.on .stagger>*:nth-child(1){animation-delay:.20s;}
+.slide.on .stagger>*:nth-child(2){animation-delay:.27s;}
+.slide.on .stagger>*:nth-child(3){animation-delay:.34s;}
+.slide.on .stagger>*:nth-child(4){animation-delay:.41s;}
+.slide.on .stagger>*:nth-child(5){animation-delay:.48s;}
+@keyframes fadeup{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:none;}}
+
+/* ─── NAV ────────────────────────────────────── */
+.nav{
+  position:fixed;bottom:0;left:0;right:0;height:60px;
+  background:rgba(47,56,70,0.92);backdrop-filter:blur(8px);
+  border-top:1px solid var(--brd);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 32px;z-index:100;
+}
+.nav-btn{
+  background:transparent;color:var(--txt2);border:1px solid var(--brd2);
+  border-radius:8px;padding:8px 16px;font-family:'DM Sans',sans-serif;font-size:12px;
+  cursor:pointer;transition:all .15s;letter-spacing:0.02em;
+}
+.nav-btn:hover:not(:disabled){background:var(--bg4);color:var(--txt);border-color:var(--gold);}
+.nav-btn:disabled{opacity:0.25;cursor:not-allowed;}
+.dots{display:flex;gap:6px;align-items:center;}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--bg4);cursor:pointer;transition:all .15s;border:none;padding:0;}
+.dot.on{background:var(--gold);width:22px;border-radius:3px;}
+.dot:hover:not(.on){background:var(--txt3);}
+.counter{font-family:'DM Mono',monospace;font-size:11px;color:var(--txt3);letter-spacing:0.08em;}
+
+/* ─── TYPOGRAPHY ─────────────────────────────── */
+.slide-label{
+  display:inline-block;font-size:10px;font-weight:500;
+  color:var(--gold);letter-spacing:0.18em;text-transform:uppercase;
+  margin-bottom:18px;font-family:'DM Mono',monospace;
+  padding:4px 10px;border:1px solid rgba(245,200,66,0.32);border-radius:4px;
+  background:rgba(245,200,66,0.06);
+}
+.slide-label.red{color:var(--acc);border-color:rgba(255,39,3,0.32);background:rgba(255,39,3,0.06);}
+.slide h1{font-size:46px;font-weight:600;line-height:1.05;margin-bottom:18px;letter-spacing:-0.025em;}
+.slide h2{font-size:30px;font-weight:600;line-height:1.15;margin-bottom:14px;letter-spacing:-0.015em;}
+.slide h3{font-size:18px;font-weight:500;margin-bottom:10px;}
+.lead{font-size:18px;color:var(--txt2);font-weight:300;line-height:1.55;margin-bottom:28px;max-width:920px;font-style:italic;}
+
+/* ─── COVER ──────────────────────────────────── */
+.cover{display:flex;flex-direction:column;justify-content:center;height:100%;position:relative;overflow:hidden;}
+.cover::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 80% 50%, rgba(245,200,66,0.07) 0%, transparent 65%),
+             radial-gradient(ellipse at 20% 80%, rgba(255,39,3,0.06) 0%, transparent 55%);
+  pointer-events:none;
+}
+.cover .yr{font-family:'DM Mono',monospace;font-size:13px;color:var(--gold);margin-bottom:30px;letter-spacing:0.18em;}
+.cover h1{font-size:80px;font-weight:600;line-height:0.95;letter-spacing:-0.04em;margin-bottom:28px;}
+.cover h1 em{font-style:italic;font-weight:400;color:var(--gold);}
+.cover .sub{font-size:20px;font-weight:300;color:var(--txt2);max-width:760px;line-height:1.45;margin-bottom:60px;}
+.cover .meta{display:flex;align-items:center;gap:20px;font-family:'DM Mono',monospace;font-size:12px;color:var(--txt3);}
+.cover-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(245,200,66,0.1);border:1px solid rgba(245,200,66,0.3);
+  border-radius:8px;padding:6px 14px;margin-bottom:24px;
+  font-size:12px;font-family:'DM Mono',monospace;color:var(--gold);letter-spacing:0.08em;
+}
+.cover-badge span{font-size:18px;}
+
+/* ─── CARDS ──────────────────────────────────── */
+.cc{background:var(--bg3);border:1px solid var(--brd);border-radius:var(--cr);padding:22px 24px;}
+.ct{font-size:13px;font-weight:500;color:var(--txt);margin-bottom:4px;}
+.cs{font-size:11px;color:var(--txt3);margin-bottom:14px;font-family:'DM Mono',monospace;letter-spacing:0.05em;}
+.cp{font-size:14px;color:var(--txt2);line-height:1.65;}
+.cp strong{color:var(--txt);font-weight:500;}
+
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+
+/* ─── KPI CARDS ──────────────────────────────── */
+.kpig{display:grid;gap:14px;margin-bottom:22px;}
+.k4{grid-template-columns:repeat(4,1fr);}
+.k3{grid-template-columns:repeat(3,1fr);}
+.k2{grid-template-columns:repeat(2,1fr);}
+.kc{background:var(--bg3);border:1px solid var(--brd);border-radius:var(--cr);padding:20px 22px;position:relative;overflow:hidden;}
+.kc::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;}
+.kc.b::before{background:var(--blue);}
+.kc.g::before{background:var(--grn);}
+.kc.a::before{background:var(--acc-soft);}
+.kc.r::before{background:var(--acc);}
+.kc.gold::before{background:var(--gold);}
+.kl{font-size:10px;font-weight:500;color:var(--txt3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px;font-family:'DM Mono',monospace;}
+.kv{font-size:32px;font-weight:600;color:var(--txt);line-height:1;margin-bottom:6px;font-family:'DM Mono',monospace;letter-spacing:-0.02em;}
+.ks{font-size:12px;color:var(--txt3);}
+.kb{display:inline-flex;align-items:center;gap:3px;font-size:10px;font-weight:500;padding:2px 8px;border-radius:10px;margin-top:8px;}
+.kb.g{background:rgba(184,228,163,.12);color:var(--grn);}
+.kb.r{background:rgba(255,39,3,.12);color:var(--acc);}
+.kb.gold{background:rgba(245,200,66,.12);color:var(--gold);}
+
+/* ─── OPORTUNIDAD CARDS ───────────────────────── */
+.opp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:18px;}
+.opp-card{
+  background:var(--bg3);border:1px solid var(--brd);border-radius:var(--cr);
+  padding:22px 22px;position:relative;overflow:hidden;
+}
+.opp-card::after{content:'';position:absolute;top:0;left:0;width:100%;height:3px;}
+.opp-gold::after{background:linear-gradient(90deg,var(--gold),rgba(245,200,66,0.3));}
+.opp-red::after{background:linear-gradient(90deg,var(--acc),rgba(255,39,3,0.3));}
+.opp-blue::after{background:linear-gradient(90deg,var(--blue),rgba(138,185,255,0.3));}
+.opp-icon{font-size:28px;margin-bottom:12px;}
+.opp-title{font-size:16px;font-weight:600;margin-bottom:8px;}
+.opp-desc{font-size:13px;color:var(--txt2);line-height:1.6;}
+.opp-stat{font-family:'DM Mono',monospace;font-size:24px;font-weight:600;margin-top:14px;}
+.opp-stat.gold{color:var(--gold);}
+.opp-stat.red{color:var(--acc);}
+.opp-stat.blue{color:var(--blue);}
+.opp-stat-label{font-size:11px;color:var(--txt3);margin-top:3px;}
+
+/* ─── HIGHLIGHT BOX ──────────────────────────── */
+.hl{
+  background:linear-gradient(180deg,rgba(245,200,66,0.08) 0%,rgba(245,200,66,0.02) 100%);
+  border:1px solid rgba(245,200,66,0.28);border-radius:var(--cr);
+  padding:20px 24px;
+}
+.hl.red{
+  background:linear-gradient(180deg,rgba(255,39,3,0.08) 0%,rgba(255,180,167,0.03) 100%);
+  border-color:rgba(255,39,3,0.28);
+}
+.hl-l{font-size:10px;font-weight:500;color:var(--gold);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:8px;font-family:'DM Mono',monospace;}
+.hl.red .hl-l{color:var(--acc);}
+.hl-t{font-size:17px;font-weight:500;color:var(--txt);line-height:1.4;}
+.hl-t b{color:var(--gold);font-weight:600;}
+.hl.red .hl-t b{color:var(--acc);}
+
+/* ─── PILLAR CARDS ────────────────────────────── */
+.pillar-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;}
+.pillar{
+  background:var(--bg3);border:1px solid var(--brd);border-left:3px solid var(--gold);
+  border-radius:var(--cr);padding:20px 22px;
+  transition:transform .2s;
+}
+.pillar:hover{transform:translateY(-2px);}
+.pillar.p2{border-left-color:var(--acc);}
+.pillar.p3{border-left-color:var(--blue);}
+.pillar.p4{border-left-color:var(--grn);}
+.pillar-num{font-family:'DM Mono',monospace;font-size:10px;color:var(--gold);letter-spacing:0.12em;margin-bottom:6px;text-transform:uppercase;}
+.pillar.p2 .pillar-num{color:var(--acc);}
+.pillar.p3 .pillar-num{color:var(--blue);}
+.pillar.p4 .pillar-num{color:var(--grn);}
+.pillar-t{font-size:16px;font-weight:500;margin-bottom:8px;}
+.pillar-d{font-size:12.5px;color:var(--txt2);line-height:1.55;margin-bottom:12px;}
+.pillar-tags{display:flex;flex-wrap:wrap;gap:6px;}
+.pillar-tags span{font-size:10px;color:var(--txt3);background:var(--bg2);border:1px solid var(--brd);border-radius:5px;padding:2px 9px;font-family:'DM Mono',monospace;}
+
+/* ─── CANALES TABLE ───────────────────────────── */
+.canal-table{width:100%;border-collapse:collapse;font-size:13px;}
+.canal-table th{
+  text-align:left;font-size:10px;font-weight:500;color:var(--txt3);
+  letter-spacing:0.08em;text-transform:uppercase;padding:11px 14px;
+  border-bottom:1px solid var(--brd);font-family:'DM Mono',monospace;
+}
+.canal-table td{padding:13px 14px;color:var(--txt2);border-bottom:1px solid var(--brd);vertical-align:top;}
+.canal-table tr:last-child td{border-bottom:none;}
+.canal-table tr:hover td{background:var(--bg4);}
+.canal-table td.bold{font-weight:600;color:var(--txt);}
+.cpb{display:inline-block;font-family:'DM Mono',monospace;font-size:10px;font-weight:500;padding:2px 8px;border-radius:5px;}
+.cpb.g{background:rgba(184,228,163,.14);color:var(--grn);}
+.cpb.a{background:rgba(255,180,167,.16);color:var(--acc-soft);}
+.cpb.r{background:rgba(255,39,3,.14);color:var(--acc);}
+.cpb.b{background:rgba(138,185,255,.14);color:var(--blue);}
+.cpb.gold{background:rgba(245,200,66,.14);color:var(--gold);}
+
+/* ─── ROADMAP ────────────────────────────────── */
+.rmap{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.rmap-q{
+  background:var(--bg3);border:1px solid var(--brd);border-radius:var(--cr);
+  padding:24px 26px;position:relative;
+}
+.rmap-q::before{
+  content:'';position:absolute;top:-1px;left:-1px;right:-1px;height:3px;
+  border-top-left-radius:var(--cr);border-top-right-radius:var(--cr);
+}
+.rmap-q.q1::before{background:var(--blue);}
+.rmap-q.q2::before{background:var(--gold);}
+.rmap-q.q3::before{background:var(--acc);}
+.rmap-q-h{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.12em;color:var(--txt3);margin-bottom:6px;}
+.rmap-q.q1 .rmap-q-h{color:var(--blue);}
+.rmap-q.q2 .rmap-q-h{color:var(--gold);}
+.rmap-q.q3 .rmap-q-h{color:var(--acc);}
+.rmap-q-t{font-size:17px;font-weight:600;margin-bottom:16px;letter-spacing:-0.01em;}
+.rmap-q-l{font-size:13px;color:var(--txt2);margin-bottom:10px;padding-left:14px;position:relative;line-height:1.5;}
+.rmap-q-l::before{content:'';position:absolute;left:0;top:8px;width:5px;height:5px;border-radius:50%;background:var(--txt3);}
+
+/* ─── BUDGET TABLE ───────────────────────────── */
+.budget-wrap{background:var(--bg3);border:1px solid var(--brd);border-radius:var(--cr);overflow:hidden;}
+.budget-table{width:100%;border-collapse:collapse;font-size:13.5px;}
+.budget-table th{
+  text-align:left;font-size:10px;font-weight:500;color:var(--txt3);
+  letter-spacing:0.08em;text-transform:uppercase;padding:13px 16px;
+  background:var(--bg2);border-bottom:1px solid var(--brd);font-family:'DM Mono',monospace;
+}
+.budget-table td{padding:13px 16px;color:var(--txt2);border-bottom:1px solid var(--brd);}
+.budget-table tr:last-child td{border-bottom:none;}
+.budget-table tr:hover td{background:var(--bg4);}
+.budget-table td.cat{font-weight:600;color:var(--txt);}
+.budget-table td.num{font-family:'DM Mono',monospace;font-size:13px;color:var(--txt);}
+.budget-table td.pct{font-family:'DM Mono',monospace;font-size:12px;color:var(--txt3);}
+.budget-table .total-row td{background:rgba(245,200,66,0.06);border-top:1px solid rgba(245,200,66,0.3);font-weight:600;color:var(--gold);}
+.budget-table .total-row td.num{font-size:16px;}
+
+/* ─── NEXT STEPS ─────────────────────────────── */
+.step-list{display:flex;flex-direction:column;gap:12px;}
+.step-item{
+  display:grid;grid-template-columns:44px 1fr auto;align-items:center;gap:18px;
+  background:var(--bg3);border:1px solid var(--brd);border-radius:var(--cr);
+  padding:18px 22px;
+}
+.step-n{font-family:'DM Mono',monospace;font-size:20px;font-weight:600;color:var(--gold);line-height:1;}
+.step-t{font-size:14px;font-weight:500;margin-bottom:4px;}
+.step-d{font-size:12.5px;color:var(--txt2);line-height:1.5;}
+.step-date{font-family:'DM Mono',monospace;font-size:11px;color:var(--txt3);white-space:nowrap;text-align:right;}
+
+/* ─── FASE / TIMELINE STRIP ───────────────────── */
+.timeline{display:flex;gap:0;margin:18px 0;border-radius:10px;overflow:hidden;}
+.tl-phase{flex:1;padding:14px 16px;background:var(--bg3);border-right:1px solid var(--brd);}
+.tl-phase:last-child{border-right:none;}
+.tl-phase.active{background:rgba(245,200,66,0.08);border-top:2px solid var(--gold);}
+.tl-phase.hot{background:rgba(255,39,3,0.07);border-top:2px solid var(--acc);}
+.tl-label{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--txt3);margin-bottom:4px;}
+.tl-phase.active .tl-label{color:var(--gold);}
+.tl-phase.hot .tl-label{color:var(--acc);}
+.tl-name{font-size:13px;font-weight:600;color:var(--txt);margin-bottom:4px;}
+.tl-dates{font-size:10px;font-family:'DM Mono',monospace;color:var(--txt3);}
+
+/* ─── SECTION DIVIDER ────────────────────────── */
+.sec-div{
+  display:flex;flex-direction:column;justify-content:center;height:100%;
+  background:linear-gradient(160deg,rgba(245,200,66,0.07) 0%,var(--bg) 55%);
+}
+.sec-eyebrow{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.2em;color:rgba(245,200,66,0.4);margin-bottom:14px;text-transform:uppercase;}
+.sec-title{font-size:58px;font-weight:600;line-height:1;letter-spacing:-0.03em;color:var(--gold);margin-bottom:18px;}
+.sec-desc{font-size:18px;color:var(--txt2);font-weight:300;max-width:640px;line-height:1.5;}
+
+/* ─── MEDIOS CARD ─────────────────────────────── */
+.medio-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.medio-section{background:var(--bg3);border:1px solid var(--brd);border-radius:var(--cr);padding:22px 24px;}
+.medio-section-title{font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--brd);}
+.medio-section-title.digital{color:var(--blue);}
+.medio-section-title.trad{color:var(--gold);}
+.medio-item{display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.04);}
+.medio-item:last-child{border-bottom:none;}
+.medio-icon{font-size:20px;flex-shrink:0;margin-top:2px;}
+.medio-name{font-size:13px;font-weight:600;color:var(--txt);margin-bottom:3px;}
+.medio-desc{font-size:11.5px;color:var(--txt3);line-height:1.5;}
+.medio-badge{display:inline-block;font-size:9px;font-weight:700;padding:1px 7px;border-radius:10px;margin-left:8px;}
+.mb-gold{background:rgba(245,200,66,0.15);color:var(--gold);}
+.mb-blue{background:rgba(138,185,255,0.15);color:var(--blue);}
+.mb-red{background:rgba(255,39,3,0.15);color:var(--acc);}
+.mb-grn{background:rgba(184,228,163,0.15);color:var(--grn);}
+
+/* ─── ACTIVACION CARDS ────────────────────────── */
+.activ-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+.activ-card{background:var(--bg3);border:1px solid var(--brd);border-radius:var(--cr);padding:20px 20px;}
+.activ-icon{font-size:26px;margin-bottom:10px;}
+.activ-t{font-size:14px;font-weight:600;margin-bottom:6px;}
+.activ-d{font-size:12px;color:var(--txt2);line-height:1.55;margin-bottom:12px;}
+.activ-meta{font-size:10px;font-family:'DM Mono',monospace;color:var(--txt3);letter-spacing:0.06em;text-transform:uppercase;}
+
+/* ─── PLACEHOLDER NOTE ────────────────────────── */
+.placeholder{
+  border:1px dashed rgba(245,200,66,0.3);border-radius:10px;
+  padding:20px 24px;background:rgba(245,200,66,0.03);
+  text-align:center;color:var(--txt3);font-size:13px;font-style:italic;
+  margin-top:12px;
+}
+.placeholder strong{color:var(--gold);font-style:normal;}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="hdr">
+  <div class="hdr-l">
+    <span class="la">ASSA</span>
+    <span class="hdr-x">×</span>
+    <span class="la">XIY</span>
+    <div class="sep"></div>
+    <span class="hdr-meta">ESTRATEGIA MUNDIAL 2026</span>
+  </div>
+  <div class="hdr-r">
+    <span class="tagline">⚽ Mundial 2026</span>
+  </div>
+</header>
+<div class="deck">
+
+<!-- ════ SLIDE 1 — COVER ════ -->
+<section class="slide on" data-slide="1">
+  <div class="slide-inner cover">
+    <div class="cover-badge"><span>⚽</span> FIFA WORLD CUP 2026 · USA / CANADA / MÉXICO</div>
+    <div class="yr">ASSA × XIY · 2026</div>
+    <h1>Estrategia<br><em>Mundial.</em></h1>
+    <div class="sub">9,2 millones de ecuatorianos estarán conectados. Una sola oportunidad cada 4 años. Esta es la estrategia de ASSA para el torneo más grande del año.</div>
+    <div class="cover meta">
+      <span>XIY × ASSA</span>
+      <span style="opacity:0.4;">·</span>
+      <span style="color:var(--gold);font-weight:600;font-family:'Quicksand',sans-serif;">#MundialConASSA</span>
+      <span style="opacity:0.4;">·</span>
+      <span>Junio – Julio 2026</span>
+    </div>
+  </div>
+</section>
+
+<!-- ════ SLIDE 2 — CONTEXTO ════ -->
+<section class="slide" data-slide="2">
+  <div class="slide-inner">
+    <div class="slide-label">01 · Contexto</div>
+    <h2>La oportunidad más grande del año</h2>
+    <p class="lead">El Mundial 2026 se juega en Norteamérica. Ecuador clasifica. Los ecuatorianos estarán conectados como nunca. ASSA debe estar ahí.</p>
+    <div class="opp-grid stagger">
+      <div class="opp-card opp-gold">
+        <div class="opp-icon">🌎</div>
+        <div class="opp-title">Audiencia global</div>
+        <div class="opp-desc">El Mundial 2026 será el torneo más visto de la historia, con 48 selecciones y más de 100 partidos disputados en USA, México y Canadá.</div>
+        <div class="opp-stat gold">5B+</div>
+        <div class="opp-stat-label">Espectadores proyectados globales</div>
+      </div>
+      <div class="opp-card opp-red">
+        <div class="opp-icon">🇪🇨</div>
+        <div class="opp-title">Ecuador en el Mundial</div>
+        <div class="opp-desc">La Tri está en el Grupo E junto a Alemania, Costa de Marfil y Curazao. 3 partidos en Filadelfia, Kansas City y Nueva York que paralizarán al país.</div>
+        <div class="opp-stat red">9.2M</div>
+        <div class="opp-stat-label">Ecuatorianos que seguirán el Mundial · Rating TV del 47%</div>
+      </div>
+      <div class="opp-card opp-blue">
+        <div class="opp-icon">📱</div>
+        <div class="opp-title">Ventana de marca</div>
+        <div class="opp-desc">El 78% verá los partidos por TV y el 65% también por smartphone — 12,5M de interacciones digitales proyectadas en Ecuador durante el torneo.</div>
+        <div class="opp-stat blue">12.5M</div>
+        <div class="opp-stat-label">Interacciones digitales proyectadas · Jun–Jul 2026</div>
+      </div>
+    </div>
+    <div class="hl stagger">
+      <div class="hl-l">Fuente: Publicis Groupe 2026</div>
+      <div class="hl-t">9,2M de ecuatorianos seguirán el Mundial con un rating TV del 47% y 12,5M interacciones digitales. <b>El 65% lo seguirá también por smartphone</b> — exactamente donde estará ASSA.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ SLIDE 3 — MARCAS ════ -->
+<section class="slide" data-slide="3">
+  <div class="slide-inner">
+    <div class="slide-label">02 · Marcas</div>
+    <h2>Las marcas de ASSA en el Mundial</h2>
+    <p class="lead">La campaña sale bajo <strong style="color:var(--gold);">ASSA corporativo</strong> — posicionando al grupo como el mayor holding automotriz de la zona centro y oriente del Ecuador.</p>
+    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:14px;" class="stagger">
+      <div style="background:var(--bg3);border:1px solid var(--brd);border-radius:var(--cr);padding:22px 16px;text-align:center;"><div style="font-size:28px;margin-bottom:10px;">🚗</div><div style="font-size:14px;font-weight:600;color:var(--txt);">Chevrolet Livianos</div></div>
+      <div style="background:var(--bg3);border:1px solid var(--brd);border-radius:var(--cr);padding:22px 16px;text-align:center;"><div style="font-size:28px;margin-bottom:10px;">🚛</div><div style="font-size:14px;font-weight:600;color:var(--txt);">Chevrolet Pesados</div></div>
+      <div style="background:var(--bg3);border:1px solid var(--brd);border-radius:var(--cr);padding:22px 16px;text-align:center;"><div style="font-size:28px;margin-bottom:10px;">⭐</div><div style="font-size:14px;font-weight:600;color:var(--txt);">Mercedes-Benz</div></div>
+      <div style="background:var(--bg3);border:1px solid var(--brd);border-radius:var(--cr);padding:22px 16px;text-align:center;"><div style="font-size:28px;margin-bottom:10px;">🔵</div><div style="font-size:14px;font-weight:600;color:var(--txt);">Volkswagen</div></div>
+      <div style="background:var(--bg3);border:1px solid var(--brd);border-radius:var(--cr);padding:22px 16px;text-align:center;"><div style="font-size:28px;margin-bottom:10px;">🚙</div><div style="font-size:14px;font-weight:600;color:var(--txt);">MG</div></div>
+      <div style="background:var(--bg3);border:1px solid var(--brd);border-radius:var(--cr);padding:22px 16px;text-align:center;"><div style="font-size:28px;margin-bottom:10px;">🚙</div><div style="font-size:14px;font-weight:600;color:var(--txt);">Subaru</div></div>
+      <div style="background:var(--bg3);border:1px solid var(--brd);border-radius:var(--cr);padding:22px 16px;text-align:center;"><div style="font-size:28px;margin-bottom:10px;">🚙</div><div style="font-size:14px;font-weight:600;color:var(--txt);">GAC</div></div>
+      <div style="background:var(--bg3);border:1px solid var(--brd);border-radius:var(--cr);padding:22px 16px;text-align:center;"><div style="font-size:28px;margin-bottom:10px;">🚙</div><div style="font-size:14px;font-weight:600;color:var(--txt);">GEELY</div></div>
+      <div style="background:var(--bg3);border:1px solid var(--brd);border-radius:var(--cr);padding:22px 16px;text-align:center;"><div style="font-size:28px;margin-bottom:10px;">🚚</div><div style="font-size:14px;font-weight:600;color:var(--txt);">Forland</div></div>
+      <div style="background:var(--bg3);border:1px solid var(--brd);border-radius:var(--cr);padding:22px 16px;text-align:center;"><div style="font-size:28px;margin-bottom:10px;">🚚</div><div style="font-size:14px;font-weight:600;color:var(--txt);">Isuzu</div></div>
+    </div>
+
+    <div class="stagger" style="margin-top:14px;background:var(--bg3);border:1px solid var(--brd);border-radius:var(--cr);padding:14px 20px;">
+      <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--txt3);margin-bottom:10px;">Cobertura geográfica</div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;">
+        <span style="background:rgba(245,200,66,0.1);border:1px solid rgba(245,200,66,0.3);border-radius:20px;padding:4px 14px;font-size:12px;color:var(--gold);font-weight:500;">📍 Ambato</span>
+        <span style="background:rgba(245,200,66,0.1);border:1px solid rgba(245,200,66,0.3);border-radius:20px;padding:4px 14px;font-size:12px;color:var(--gold);font-weight:500;">📍 Riobamba</span>
+        <span style="background:rgba(245,200,66,0.1);border:1px solid rgba(245,200,66,0.3);border-radius:20px;padding:4px 14px;font-size:12px;color:var(--gold);font-weight:500;">📍 Latacunga</span>
+        <span style="background:rgba(138,185,255,0.1);border:1px solid rgba(138,185,255,0.3);border-radius:20px;padding:4px 14px;font-size:12px;color:var(--blue);font-weight:500;">📍 Coca</span>
+        <span style="background:rgba(138,185,255,0.1);border:1px solid rgba(138,185,255,0.3);border-radius:20px;padding:4px 14px;font-size:12px;color:var(--blue);font-weight:500;">📍 Lago Agrio</span>
+        <span style="background:rgba(184,228,163,0.1);border:1px solid rgba(184,228,163,0.3);border-radius:20px;padding:4px 14px;font-size:12px;color:var(--grn);font-weight:500;">📍 Pichincha y alrededores</span>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="slide" data-slide="4">
+  <div class="slide-inner sec-div">
+    <div class="sec-eyebrow">Estrategia</div>
+    <div class="sec-title">El Mundial<br>es nuestra<br><em style="font-style:italic;font-weight:400;">ventana.</em></div>
+    <div class="sec-desc">9,2 millones de ecuatorianos conectados. Una sola oportunidad cada 4 años. ASSA tiene que estar presente cuando el país entero está mirando.</div>
+  </div>
+</section>
+
+<!-- ════ SLIDE 5 — PILARES ════ -->
+<section class="slide" data-slide="5">
+  <div class="slide-inner">
+    <div class="slide-label">03 · Estrategia</div>
+    <h2>Los 3 pilares de la campaña</h2>
+    <p class="lead">Todo el esfuerzo apunta a un solo objetivo: que Ecuador identifique a ASSA como el gran grupo automotriz de la región durante el Mundial.</p>
+    <div class="pillar-grid stagger">
+      <div class="pillar">
+        <div class="pillar-num">Pilar 01</div>
+        <div class="pillar-t">🏆 Posicionamiento de marca ASSA</div>
+        <div class="pillar-d">Conectar la identidad de ASSA corporativo con la emoción del fútbol. Un paraguas de marca que agrupa 14 marcas y 6+ ciudades. El mensaje es institucional, de grupo.</div>
+        <div class="pillar-tags"><span>Atomik</span><span>Primicias (Logan)</span></div>
+      </div>
+      <div class="pillar p2">
+        <div class="pillar-num">Pilar 02</div>
+        <div class="pillar-t">📱 Alcance masivo en redes sociales</div>
+        <div class="pillar-d">Campañas de Reach y Frecuencia en Meta y TikTok durante junio y julio. Reels y In-Feed orientados a impresiones y alcance único en las ciudades ASSA.</div>
+        <div class="pillar-tags"><span>Geofencing</span><span>Banners</span><span>Push Notification</span></div>
+      </div>
+      <div class="pillar p3">
+        <div class="pillar-num">Pilar 03</div>
+        <div class="pillar-t">🌐 Visibilidad en medios y geolocalización</div>
+        <div class="pillar-d">Presencia editorial en Primicias, publicidad hiperlocal con Atomik (geofencing, banners, push) durante los partidos del torneo.</div>
+        <div class="pillar-tags"><span>Primicias.ec</span><span>Atomik</span><span>Geofencing</span><span>Display</span></div>
+      </div>
+      <div class="pillar p4" style="border-left-color:var(--gold);">
+        <div class="pillar-num" style="color:var(--gold);">KPIs · Jun – Jul 2026</div>
+        <div class="pillar-t">📊 Métricas de éxito</div>
+        <div class="pillar-d">Personas alcanzadas, impresiones totales, frecuencia promedio y CPM optimizado. El éxito se mide en visibilidad de marca, no en clics ni leads.</div>
+        <div class="pillar-tags"><span>Alcance único</span><span>Impresiones</span><span>Frecuencia</span><span>CPM</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ SLIDE 6 — DIVIDER MEDIOS ════ -->
+<section class="slide" data-slide="6">
+  <div class="slide-inner sec-div" style="background:linear-gradient(160deg,rgba(138,185,255,0.07) 0%,var(--bg) 55%);">
+    <div class="sec-eyebrow" style="color:rgba(138,185,255,0.4);">Canales</div>
+    <div class="sec-title" style="color:var(--blue);">Los 2<br>medios.</div>
+    <div class="sec-desc">Atomik y Primicias (Logan) — activados simultáneamente durante los dos meses del Mundial.</div>
+  </div>
+</section>
+
+<!-- ════ SLIDE 7 — INVERSIÓN ════ -->
+<section class="slide" data-slide="7">
+  <div class="slide-inner">
+    <div class="slide-label red">04 · Inversión</div>
+    <h2>Inversión total · Jun – Jul 2026</h2>
+    <p class="lead">Un solo plan con los dos medios aprobados, activos durante <strong style="color:var(--gold);">junio y julio 2026.</strong></p>
+
+    <!-- Total destacado -->
+    <div style="background:linear-gradient(135deg,rgba(245,200,66,0.12),rgba(245,200,66,0.03));border:1px solid rgba(245,200,66,0.4);border-radius:var(--cr);padding:24px 28px;margin-bottom:18px;display:flex;align-items:center;justify-content:space-between;" class="stagger">
+      <div>
+        <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:6px;">Inversión total · Junio + Julio 2026</div>
+        <div style="font-family:'DM Mono',monospace;font-size:52px;font-weight:700;color:var(--gold);line-height:1;">$2,400</div>
+        <div style="font-size:12px;color:var(--txt3);margin-top:6px;">2 medios · 2 meses · ASSA corporativo</div>
+      </div>
+      <div style="font-size:56px;">⚽</div>
+    </div>
+
+    <!-- Los 2 medios -->
+    <div class="g2 stagger">
+      <div style="background:var(--bg3);border:1px solid var(--brd);border-top:3px solid var(--gold);border-radius:var(--cr);padding:22px 24px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
+          <div style="font-size:15px;font-weight:700;color:var(--gold);">📍 Atomik</div>
+          <div style="font-family:'DM Mono',monospace;font-size:28px;font-weight:700;color:var(--gold);">$900</div>
+        </div>
+        <div style="font-size:12px;color:var(--txt2);line-height:1.7;margin-bottom:14px;">Publicidad hiperlocal con geolocalización durante el Mundial. 1 opción elegida: geofencing, banners display o push en agencias de la competencia.</div>
+        <div style="background:var(--bg2);border-radius:8px;padding:12px 14px;">
+          <div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--txt3);margin-bottom:8px;">Indicadores de rendimiento</div>
+          <div style="display:flex;flex-direction:column;gap:5px;">
+            <div style="display:flex;justify-content:space-between;font-size:12px;"><span style="color:var(--txt3);">Rich Media (CPM $5)</span><span style="font-family:'DM Mono',monospace;font-weight:600;color:var(--txt);">180K imp.</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:12px;"><span style="color:var(--txt3);">Banners (CPM $1.50)</span><span style="font-family:'DM Mono',monospace;font-weight:600;color:var(--txt);">600K imp.</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:12px;"><span style="color:var(--txt3);">Push (CPM $0.10)</span><span style="font-family:'DM Mono',monospace;font-weight:600;color:var(--txt);">9M imp.</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div style="background:var(--bg3);border:1px solid var(--brd);border-top:3px solid var(--grn);border-radius:var(--cr);padding:22px 24px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
+          <div style="font-size:15px;font-weight:700;color:var(--grn);">📰 Primicias · Logan</div>
+          <div style="font-family:'DM Mono',monospace;font-size:28px;font-weight:700;color:var(--grn);">$1,500</div>
+        </div>
+        <div style="font-size:12px;color:var(--txt2);line-height:1.7;margin-bottom:14px;">Presencia en el medio digital más influyente del Ecuador bajo marca ASSA corporativo. Home page + redes sociales de Primicias durante el Mundial.</div>
+        <div style="background:var(--bg2);border-radius:8px;padding:12px 14px;">
+          <div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--txt3);margin-bottom:8px;">Entregables garantizados</div>
+          <div style="display:flex;flex-direction:column;gap:5px;">
+            <div style="display:flex;justify-content:space-between;font-size:12px;"><span style="color:var(--txt3);">Impresiones Home + Jugada</span><span style="font-family:'DM Mono',monospace;font-weight:600;color:var(--txt);">200K</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:12px;"><span style="color:var(--txt3);">Stories IG/FB</span><span style="font-family:'DM Mono',monospace;font-weight:600;color:var(--txt);">2</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:12px;"><span style="color:var(--txt3);">Posts / Reels</span><span style="font-family:'DM Mono',monospace;font-weight:600;color:var(--txt);">2</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ SLIDE 8 — ATOMIK ════ -->
+<section class="slide" data-slide="8">
+  <div class="slide-inner">
+    <div class="slide-label">05 · Tecnología Publicitaria</div>
+    <h2>Atomik · Publicidad hiperlocal</h2>
+    <p class="lead">Atomik es una plataforma de publicidad programática con tecnología de geolocalización que permite llegar al usuario correcto, en el lugar correcto, en el momento exacto.</p>
+    <div class="activ-grid stagger" style="margin-bottom:18px;">
+      <div class="activ-card" style="border-top:3px solid var(--gold);">
+        <div class="activ-icon">📍</div>
+        <div class="activ-t">Geolocalización de zonas</div>
+        <div class="activ-d">Se dibuja una geocerca virtual alrededor de zonas estratégicas — fan zones, centros comerciales, estadios — y se activan anuncios a todos los dispositivos móviles que ingresen durante el Mundial.</div>
+        <div style="background:var(--bg2);border:1px solid var(--brd);border-radius:8px;padding:12px;margin-top:4px;">
+          <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin-bottom:6px;">Casos de uso</div>
+          <div style="font-size:12px;color:var(--txt2);line-height:1.6;">· Fan zones y watch parties del Mundial<br>· Zonas cerca de concesionarios ASSA<br>· Centros comerciales durante partidos</div>
+        </div>
+        <div class="activ-meta" style="margin-top:10px;"><span class="cpb gold">Geofencing</span></div>
+      </div>
+      <div class="activ-card" style="border-top:3px solid var(--blue);">
+        <div class="activ-icon">🖼️</div>
+        <div class="activ-t">Banners display programáticos</div>
+        <div class="activ-d">Banners display rich media servidos programáticamente en apps y sitios web del usuario mientras navega. Formatos interactivos, animados o con data en tiempo real integrada.</div>
+        <div style="background:var(--bg2);border:1px solid var(--brd);border-radius:8px;padding:12px;margin-top:4px;">
+          <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--blue);margin-bottom:6px;">Formatos disponibles</div>
+          <div style="font-size:12px;color:var(--txt2);line-height:1.6;">· Banners animados con marcador en vivo<br>· Rich media interactivos (swipe, expand)<br>· Display en apps deportivas y de noticias</div>
+        </div>
+        <div class="activ-meta" style="margin-top:10px;"><span class="cpb b">Rich Media</span></div>
+      </div>
+      <div class="activ-card" style="border-top:3px solid var(--acc);">
+        <div class="activ-icon">🎯</div>
+        <div class="activ-t">Push en agencias de la competencia</div>
+        <div class="activ-d">Se geofencean los concesionarios rivales. Cuando un usuario ingresa, recibe un push notification o banner de ASSA — en el momento de máxima intención de compra.</div>
+        <div style="background:rgba(255,39,3,0.06);border:1px solid rgba(255,39,3,0.22);border-radius:8px;padding:12px;margin-top:4px;">
+          <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--acc);margin-bottom:6px;">Estrategia competitiva</div>
+          <div style="font-size:12px;color:var(--txt2);line-height:1.6;">· Geocerca en agencias rivales<br>· Push: "Compara antes de decidir"<br>· Redirige prospectos a concesionarios ASSA</div>
+        </div>
+        <div class="activ-meta" style="margin-top:10px;"><span class="cpb r">Conquista</span></div>
+      </div>
+    </div>
+    <div class="hl stagger">
+      <div class="hl-l">Por qué Atomik en el Mundial</div>
+      <div class="hl-t">El Mundial concentra a la audiencia en lugares físicos: fan zones, bares, centros comerciales. Atomik convierte esa presencia física en <b>impacto publicitario hiperlocal</b>. Tanto en el Plan Base como en el Pro se elige 1 de las 3 opciones — la diferencia es el presupuesto disponible para ejecutarla con mayor intensidad.</div>
+    </div>
+
+    <div class="stagger" style="margin-top:16px;background:linear-gradient(135deg,rgba(245,200,66,0.12),rgba(245,200,66,0.04));border:1px solid rgba(245,200,66,0.4);border-radius:var(--cr);padding:20px 24px;display:flex;align-items:center;justify-content:space-between;gap:20px;">
+      <div style="display:flex;align-items:center;gap:16px;">
+        <div style="font-size:36px;">🎬</div>
+        <div>
+          <div style="font-size:16px;font-weight:700;color:var(--gold);margin-bottom:4px;">Ver formatos Atomik en acción</div>
+          <div style="font-size:12px;color:var(--txt2);">Demo interactiva con todos los formatos disponibles — Rich Media, Banners, Push y Geofencing</div>
+        </div>
+      </div>
+      <a href="https://view.genially.com/6706fa4ce4fc5d53a7a1c9df" target="_blank"
+         style="flex-shrink:0;display:inline-flex;align-items:center;gap:8px;background:var(--gold);color:#1a1a1a;font-size:13px;font-weight:800;padding:12px 22px;border-radius:8px;text-decoration:none;letter-spacing:0.03em;white-space:nowrap;">
+        Ver demo ↗
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ════ SLIDE 9 — PRIMICIAS ════ -->
+<section class="slide" data-slide="9">
+  <div class="slide-inner">
+    <div class="slide-label">06 · Medios Digitales Premium</div>
+    <h2>Primicias · Presencia editorial digital</h2>
+    <p class="lead">Primicias es el medio digital de mayor credibilidad en Ecuador. Esta alianza va bajo <strong style="color:var(--gold);">ASSA corporativo</strong> — posicionando el grupo, no las marcas individuales.</p>
+    <div style="display:flex;align-items:center;gap:12px;background:rgba(245,200,66,0.08);border:1px solid rgba(245,200,66,0.3);border-radius:10px;padding:14px 20px;margin-bottom:20px;">
+      <div style="font-size:24px;">🏢</div>
+      <div>
+        <div style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin-bottom:3px;">Marca comunicada</div>
+        <div style="font-size:15px;color:var(--txt);font-weight:500;">ASSA corporativo — no marcas individuales de autos</div>
+        <div style="font-size:12px;color:var(--txt3);margin-top:2px;">Posicionamiento institucional, confianza y liderazgo de grupo automotriz</div>
+      </div>
+    </div>
+    <div class="g2 stagger" style="margin-bottom:18px;">
+      <div class="cc" style="border-top:3px solid var(--gold);">
+        <div class="cs" style="color:var(--gold);">PRIMICIAS · 01</div>
+        <div class="ct" style="font-size:16px;">🏠 Home page de Primicias.ec</div>
+        <div class="cp" style="margin-top:10px;">Visibilidad premium en la portada del medio digital más consultado en Ecuador. Banner en posición top o mid-page durante el período del Mundial.</div>
+        <div style="margin-top:14px;background:var(--bg2);border:1px solid var(--brd);border-radius:8px;padding:12px;">
+          <div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--txt3);margin-bottom:6px;">Incluye</div>
+          <div style="font-size:12px;color:var(--txt2);line-height:1.7;">· Banner estático o animado<br>· Rotación asegurada en portada<br>· Reporte de impresiones y clics</div>
+        </div>
+        <div style="margin-top:10px;"><span class="cpb gold">Alta visibilidad</span></div>
+      </div>
+      <div class="cc" style="border-top:3px solid var(--grn);">
+        <div class="cs" style="color:var(--grn);">PRIMICIAS · 02</div>
+        <div class="ct" style="font-size:16px;">📱 Redes sociales de Primicias</div>
+        <div class="cp" style="margin-top:10px;">Publicaciones patrocinadas en Instagram, Facebook y X de Primicias — amplificando el mensaje de ASSA corporativo a la audiencia fiel del medio.</div>
+        <div style="margin-top:14px;background:var(--bg2);border:1px solid var(--brd);border-radius:8px;padding:12px;">
+          <div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--txt3);margin-bottom:6px;">Incluye</div>
+          <div style="font-size:12px;color:var(--txt2);line-height:1.7;">· Posts patrocinados en partidos clave<br>· Mención de marca en cobertura en vivo<br>· Stories y reels durante el torneo</div>
+        </div>
+        <div style="margin-top:10px;"><span class="cpb g">Audiencia fiel</span></div>
+      </div>
+    </div>
+    <div class="hl stagger">
+      <div class="hl-l">Por qué Primicias para ASSA corporativo</div>
+      <div class="hl-t">Primicias tiene la audiencia más sofisticada y de mayor poder adquisitivo en Ecuador digital. Es el espacio ideal para <b>posicionar a ASSA como grupo automotriz líder</b>, separado de la comunicación de producto de cada marca.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ SLIDE 10 — ROADMAP ════ -->
+<section class="slide" data-slide="10">
+  <div class="slide-inner">
+    <div class="slide-label">08 · Plan de Acción</div>
+    <h2>Roadmap · Jun – Jul 2026</h2>
+    <p class="lead">Atomik y Primicias (Logan) activos <strong style="color:var(--gold);">simultáneamente</strong> desde el primer partido — todo concentrado en los dos meses del torneo.</p>
+    <div style="background:linear-gradient(90deg,rgba(245,200,66,0.12),rgba(255,39,3,0.08));border:1px solid rgba(245,200,66,0.35);border-radius:var(--cr);padding:18px 24px;margin-bottom:20px;" class="stagger">
+      <div style="display:flex;align-items:center;gap:16px;">
+        <div style="font-size:28px;">⚽</div>
+        <div>
+          <div style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:4px;">Ventana de campaña</div>
+          <div style="font-size:22px;font-weight:700;color:var(--txt);font-family:'DM Mono',monospace;">11 Jun – 19 Jul 2026</div>
+          <div style="font-size:12px;color:var(--txt3);margin-top:3px;">Mundial FIFA 2026 · Ecuador en Grupo E · 3 partidos de La Tri</div>
+        </div>
+        <div style="margin-left:auto;text-align:right;">
+          <div style="font-size:11px;color:var(--txt3);margin-bottom:4px;">Partidos de Ecuador</div>
+          <div style="font-family:'DM Mono',monospace;font-size:13px;color:var(--txt2);line-height:1.8;">🆚 Costa de Marfil · Filadelfia<br>🆚 Curazao · Kansas City<br>🆚 Alemania · Nueva York</div>
+        </div>
+      </div>
+    </div>
+    <div class="g2 stagger" style="margin-bottom:16px;">
+      <div style="background:var(--bg3);border:1px solid var(--brd);border-top:3px solid var(--gold);border-radius:var(--cr);padding:22px 22px;">
+        <div style="font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gold);margin-bottom:12px;">📍 Atomik · $900</div>
+        <div style="font-size:13px;color:var(--txt2);line-height:1.8;">· 1 opción elegida: Geofencing, Banners o Push<br>· Activo todo Jun–Jul<br>· Mayor intensidad en partidos de Ecuador<br>· Ciudades de cobertura ASSA</div>
+      </div>
+      <div style="background:var(--bg3);border:1px solid var(--brd);border-top:3px solid var(--grn);border-radius:var(--cr);padding:22px 22px;">
+        <div style="font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--grn);margin-bottom:12px;">📰 Primicias · Logan · $1,500</div>
+        <div style="font-size:13px;color:var(--txt2);line-height:1.8;">· Banner home page Primicias.ec<br>· 2 Stories + 2 Posts/Reels en RRSS<br>· 200K impresiones garantizadas<br>· Solo ASSA corporativo</div>
+      </div>
+    </div>
+    <div style="background:var(--bg3);border:1px solid var(--brd);border-radius:var(--cr);padding:14px 20px;" class="stagger">
+      <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--txt3);margin-bottom:10px;">Los 2 medios activos simultáneamente · 11 Jun – 19 Jul 2026</div>
+      <div style="display:grid;grid-template-columns:80px 1fr;gap:8px;align-items:center;">
+        <div style="font-size:11px;color:var(--gold);">Atomik</div><div style="height:10px;background:rgba(245,200,66,0.6);border-radius:10px;"></div>
+        <div style="font-size:11px;color:var(--grn);">Primicias</div><div style="height:10px;background:rgba(184,228,163,0.6);border-radius:10px;"></div>
+        <div style="font-size:10px;color:var(--txt3);">Jun 11</div>
+        <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--txt3);"><span>← Fase de grupos →</span><span>← Eliminatorias →</span><span>Jul 19 Final</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ SLIDE 13 — KPIs PRIMICIAS ════ -->
+<section class="slide" data-slide="11">
+  <div class="slide-inner">
+    <div class="slide-label">09 · KPIs Primicias</div>
+    <h2>Primicias · Entregables garantizados</h2>
+    <p class="lead">Lo que ASSA recibe durante <strong style="color:var(--gold);">junio y julio 2026</strong> en el medio digital más influyente del Ecuador — bajo marca ASSA corporativo.</p>
+
+    <div class="kpig k2 stagger" style="margin-bottom:18px;">
+      <div class="kc gold">
+        <div class="kl">Impresiones garantizadas</div>
+        <div class="kv">200K</div>
+        <div class="ks">Formatos standard + Rich Media · Home Primicias + Sección Jugada</div>
+        <div class="kb gold">Jun + Jul 2026</div>
+      </div>
+      <div class="kc g">
+        <div class="kl">Presencia en redes sociales</div>
+        <div class="kv" style="font-size:20px;">4 piezas</div>
+        <div class="ks">2 Stories comerciales + 2 Posts o Reels en IG/FB de Primicias</div>
+        <div class="kb g">Enviados por la marca</div>
+      </div>
+    </div>
+
+    <div class="g3 stagger">
+      <div style="background:var(--bg3);border:1px solid var(--brd);border-top:3px solid var(--gold);border-radius:var(--cr);padding:20px 22px;">
+        <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">🏠 Display · Home + Jugada</div>
+        <div style="font-family:'DM Mono',monospace;font-size:28px;font-weight:700;color:var(--txt);margin-bottom:6px;">200K</div>
+        <div style="font-size:12px;color:var(--txt2);line-height:1.6;">Impresiones en formatos <strong style="color:var(--txt);">standard y Rich Media</strong> en el Home de Primicias.ec y la sección Jugada durante los 2 meses del Mundial.</div>
+      </div>
+      <div style="background:var(--bg3);border:1px solid var(--brd);border-top:3px solid var(--blue);border-radius:var(--cr);padding:20px 22px;">
+        <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--blue);margin-bottom:10px;">📱 Redes sociales · IG / FB</div>
+        <div style="font-family:'DM Mono',monospace;font-size:28px;font-weight:700;color:var(--txt);margin-bottom:6px;">2 Stories</div>
+        <div style="font-size:12px;color:var(--txt2);line-height:1.6;">Stories comerciales publicados en las cuentas oficiales de Instagram y Facebook de Primicias. Creatividades enviadas por ASSA.</div>
+      </div>
+      <div style="background:var(--bg3);border:1px solid var(--brd);border-top:3px solid var(--grn);border-radius:var(--cr);padding:20px 22px;">
+        <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--grn);margin-bottom:10px;">📸 Contenido · Posts / Reels</div>
+        <div style="font-family:'DM Mono',monospace;font-size:28px;font-weight:700;color:var(--txt);margin-bottom:6px;">2 Posts</div>
+        <div style="font-size:12px;color:var(--txt2);line-height:1.6;">Posts o Reels publicados en el feed de Primicias IG/FB con el contenido de ASSA. Alta visibilidad para la audiencia fiel del medio.</div>
+      </div>
+    </div>
+
+    <div style="background:rgba(245,200,66,0.06);border:1px solid rgba(245,200,66,0.2);border-radius:10px;padding:14px 20px;margin-top:16px;display:flex;align-items:center;gap:12px;" class="stagger">
+      <div style="font-size:20px;">📍</div>
+      <div style="font-size:12.5px;color:var(--txt2);line-height:1.55;">Segmentación en ciudades: <strong style="color:var(--txt);">Ambato, Riobamba, Latacunga, El Coca y afueras de Pichincha</strong> · <strong style="color:var(--gold);">2 meses de presencia · Junio y Julio 2026</strong></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ SLIDE 15 — NEXT STEPS ════ -->
+<section class="slide" data-slide="12">
+  <div class="slide-inner">
+    <div class="slide-label">09 · Próximos pasos</div>
+    <h2>¿Qué sigue?</h2>
+    <p class="lead">El Mundial arranca el <strong style="color:var(--gold);">11 de junio</strong>. Estos son los pasos inmediatos para tener ASSA en el aire desde el primer partido.</p>
+    <div class="step-list stagger">
+      <div class="step-item">
+        <div class="step-n">01</div>
+        <div><div class="step-t">Confirmar plan e inversión</div><div class="step-d">Definir Plan Base o Pro, confirmar presupuesto total y aprobar la distribución entre medios.</div></div>
+        <div class="step-date">Urgente</div>
+      </div>
+      <div class="step-item">
+        <div class="step-n">02</div>
+        <div><div class="step-t">Brief creativo ASSA × XIY</div><div class="step-d">Definir el concepto creativo central, mensajes clave y adaptaciones por canal (Meta, TikTok, Atomik, Primicias).</div></div>
+        <div class="step-date">Semana 1</div>
+      </div>
+      <div class="step-item">
+        <div class="step-n">03</div>
+        <div><div class="step-t">Producción de piezas</div><div class="step-d">Producción de videos, creatividades para display, banners Atomik y materiales para Primicias.</div></div>
+        <div class="step-date">Semana 2–3</div>
+      </div>
+      <div class="step-item">
+        <div class="step-n">04</div>
+        <div><div class="step-t">Setup y activación de campañas</div><div class="step-d">Configuración de cuentas, audiencias, geofences en Atomik y acuerdo final con Primicias. Todo listo antes del 11 de junio.</div></div>
+        <div class="step-date">Semana 3–4</div>
+      </div>
+      <div class="step-item">
+        <div class="step-n">05</div>
+        <div><div class="step-t">Go live · 11 de junio 2026</div><div class="step-d">Los 4 medios activos desde el primer día del Mundial. Reporting semanal de alcance, impresiones y CPM a ASSA.</div></div>
+        <div class="step-date">11 Jun 2026</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ SLIDE 16 — CIERRE ════ -->
+<section class="slide" data-slide="13">
+  <div class="slide-inner cover">
+    <div class="cover-badge"><span>⚽</span> ASSA × XIY · MUNDIAL 2026</div>
+    <div class="yr">/ 2026</div>
+    <h1>Hagamos<br>historia <em>juntos.</em></h1>
+    <div class="sub">El Mundial 2026 es la oportunidad de poner a ASSA en el centro de la conversación más grande del año. Arranquemos.</div>
+    <div class="cover meta">
+      <span>XIY × ASSA</span>
+      <span style="opacity:0.4;">·</span>
+      <span style="color:var(--gold);font-weight:600;font-family:'Quicksand',sans-serif;">#MundialConASSA</span>
+      <span style="opacity:0.4;">·</span>
+      <span>2026</span>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<nav class="nav">
+  <button class="nav-btn" id="prev" onclick="goPrev()">← Anterior</button>
+  <div class="dots" id="dots"></div>
+  <div style="display:flex;align-items:center;gap:14px;">
+    <span class="counter" id="ctr">01 / 13</span>
+    <button class="nav-btn" id="next" onclick="goNext()">Siguiente →</button>
+  </div>
+</nav>
+
+<script>
+const TOTAL = 13;
+let cur = 1;
+const dotsEl = document.getElementById('dots');
+for(let i = 1; i <= TOTAL; i++){
+  const d = document.createElement('button');
+  d.className = 'dot' + (i === 1 ? ' on' : '');
+  d.dataset.s = i;
+  d.onclick = () => go(i);
+  d.setAttribute('aria-label', 'Slide ' + i);
+  dotsEl.appendChild(d);
+}
+function go(n){
+  if(n < 1 || n > TOTAL) return;
+  document.querySelectorAll('.slide').forEach(s => s.classList.remove('on'));
+  document.querySelectorAll('.dot').forEach(d => d.classList.remove('on'));
+  document.querySelector('.slide[data-slide="'+n+'"]').classList.add('on');
+  document.querySelector('.dot[data-s="'+n+'"]').classList.add('on');
+  cur = n;
+  document.getElementById('ctr').textContent = String(n).padStart(2,'0') + ' / ' + String(TOTAL).padStart(2,'0');
+  document.getElementById('prev').disabled = (n === 1);
+  document.getElementById('next').disabled = (n === TOTAL);
+}
+function goPrev(){ go(cur - 1); }
+function goNext(){ go(cur + 1); }
+document.addEventListener('keydown', e => {
+  if(e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown'){ e.preventDefault(); goNext(); }
+  if(e.key === 'ArrowLeft' || e.key === 'PageUp'){ e.preventDefault(); goPrev(); }
+  if(e.key === 'Home'){ e.preventDefault(); go(1); }
+  if(e.key === 'End'){ e.preventDefault(); go(TOTAL); }
+});
+document.getElementById('prev').disabled = true;
+</script>
+</body>
+</html>
